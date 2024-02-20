@@ -1,6 +1,7 @@
 version: "3.8"
 services:
   rvc:
+    shm_size: '8gb'
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,7 +9,9 @@ services:
     volumes:
       - ./weights:/app/assets/weights
       - ./opt:/app/opt
-      # - ./dataset:/app/dataset # you can use this folder in order to provide your dataset for model training
+      - ./dataset:/app/dataset # you can use this folder in order to provide your dataset for model training
+      - ./input_audio:/app/input_audio
+      - ./output_audio:/app/output_audio
     ports:
       - 7865:7865
     deploy:
